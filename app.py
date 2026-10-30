@@ -35,10 +35,8 @@ from pdf_processor import process_uploaded_pdf, DocumentChunk
 from rag_pipeline import (
     build_faiss_index,
     answer_question,
-    get_embedding_model,
     FAISSIndex,
 )
-
 # ---------------------------------------------------------------------------
 # Page configuration
 # ---------------------------------------------------------------------------
@@ -474,16 +472,6 @@ def handle_question(question: str) -> None:
             })
 
 
-# ---------------------------------------------------------------------------
-# Pre-load embedding model (cached across reruns by global singleton)
-# ---------------------------------------------------------------------------
-@st.cache_resource(show_spinner="Loading AI models… (first run only)")
-def preload_embedding_model():
-    """
-    Load the SentenceTransformer model at startup.
-    st.cache_resource ensures this runs exactly once per server instance.
-    """
-    return get_embedding_model()
 
 
 # ---------------------------------------------------------------------------
@@ -491,7 +479,6 @@ def preload_embedding_model():
 # ---------------------------------------------------------------------------
 def main() -> None:
     init_session_state()
-    preload_embedding_model()   # warm up embedding model at startup
     render_sidebar()
     render_main()
 
