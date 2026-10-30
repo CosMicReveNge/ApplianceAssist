@@ -1,0 +1,19 @@
+# Requirements verified working on Python 3.14.2 / macOS (arm64)
+# Tested: 2026-10-30
+#
+# Key change from original spec:
+#   - google-generativeai is DEPRECATED; replaced with google-genai (v1+)
+#   - streamlit pinned to >=1.40.0 for Python 3.14 protobuf compatibility
+#   - faiss-cpu: flexible lower bound (exact version varies by platform)
+
+streamlit>=1.40.0
+pypdf==4.2.0
+langchain-text-splitters==0.2.1
+langchain==0.2.6
+sentence-transformers==3.0.1
+faiss-cpu>=1.7.4
+google-genai>=1.0.0
+python-dotenv==1.0.1
+numpy==1.26.4
+
+
